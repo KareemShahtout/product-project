@@ -37,4 +37,17 @@ public class ProductDetails {
     @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
+
+    @Override
+    public String toString() {
+        return "ProductDetails{" +
+                "available=" + available +
+                ", price=" + price +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", expirationDate=" + expirationDate +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
