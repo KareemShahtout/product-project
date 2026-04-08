@@ -23,12 +23,13 @@ public class ProductDaoHibernateImpl implements ProductDao {
     }
 
     @Override
-    public void save(Product product) {
+    public Product save(Product product) {
         sessionFactory.getCurrentSession().persist(product);
+        return product;
     }
 
     @Override
-    public void deleteById(int id) {
+    public boolean deleteById(int id) {
 //        sessionFactory.getCurrentSession().createQuery("delete from ProductDetails where product_id = :id")
 //                .setParameter("id", id)
 //                .executeUpdate();
@@ -40,13 +41,15 @@ public class ProductDaoHibernateImpl implements ProductDao {
         Product product = findById(id);
         if (product != null) {
             sessionFactory.getCurrentSession().delete(product);
+            return true;
         }
+        return false;
 
     }
 
     @Override
-    public void update(Product product) {
-        sessionFactory.getCurrentSession().merge(product);
+    public Product update(Product product) {
+        return (Product) sessionFactory.getCurrentSession().merge(product);
 //      Session session = sessionFactory.getCurrentSession();
 //      session.update(product);
     }

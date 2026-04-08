@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface ProductDao {
 
-    void save(Product product);
+    Product save(Product product);
 
-    void deleteById(int id);
+    boolean deleteById(int id);
 
-    void update(Product product);
+    Product update(Product product);
 
     Product findById(int id);
 
