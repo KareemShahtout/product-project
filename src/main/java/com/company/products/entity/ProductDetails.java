@@ -3,9 +3,10 @@ package com.company.products.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "products_details")
@@ -23,7 +24,8 @@ public class ProductDetails {
     private String name;
 
     @Column(name = "expiration_date")
-    private LocalDateTime expirationDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate expirationDate;
 
     @Column(name = "manufacturer", length = 50)
     private String manufacturer;
