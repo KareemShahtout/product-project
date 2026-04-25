@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 
 @Entity
 @Table(name = "products")
@@ -16,6 +17,7 @@ public class Product {
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     @Column(length = 11)
     @Getter
+    @Setter
     private int id;
 
     @Setter
@@ -25,6 +27,7 @@ public class Product {
 
     @Getter
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
+    @Valid
     private ProductDetails productDetails;
 
     public void setProductDetails(ProductDetails productDetails) {

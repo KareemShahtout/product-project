@@ -46,6 +46,8 @@
                 <form:input path="productDetails.name"
                             cssClass="form-control"
                             placeholder="Enter product name"/>
+                            <form:errors path="productDetails.name" cssClass="error"/>
+
             </div>
 
             <!-- Expiration Date -->
@@ -54,6 +56,7 @@
                 <form:input path="productDetails.expirationDate"
                             type="date"
                             cssClass="form-control"/>
+                            <form:errors path="productDetails.expirationDate" cssClass="error"/>
             </div>
 
             <!-- Manufacturer -->
@@ -62,6 +65,7 @@
                 <form:input path="productDetails.manufacturer"
                             cssClass="form-control"
                             placeholder="Manufacturer"/>
+                            <form:errors path="productDetails.manufacturer" cssClass="error"/>
             </div>
 
             <!-- Price -->
@@ -72,6 +76,7 @@
                             step="0.01"
                             cssClass="form-control"
                             placeholder="Price"/>
+                            <form:errors path="productDetails.price" cssClass="error"/>
             </div>
 
             <!-- Availability -->
@@ -83,6 +88,7 @@
                             max="1"
                             cssClass="form-control"
                             placeholder="0 or 1"/>
+                            <form:errors path="productDetails.available" cssClass="error"/>
             </div>
 
             <button type="submit" class="btn btn-primary">
