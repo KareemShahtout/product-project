@@ -22,6 +22,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product save(Product product) {
+        product.setName(product.getProductDetails().getName());
         return productDao.save(product);
     }
 
@@ -39,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
             throw new RuntimeException("Product with id " + product.getId() + " not found");
         }
 
-        existingProduct.setName(product.getName());
+        existingProduct.setName(product.getProductDetails().getName());
 
         if (existingProduct.getProductDetails() == null) {
             existingProduct.setProductDetails(new ProductDetails());

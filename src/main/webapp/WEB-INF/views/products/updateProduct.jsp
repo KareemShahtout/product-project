@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +36,7 @@
 
     <div class="form-box">
 
-        <form:form action="${pageContext.request.contextPath}/products/updateProduct/${product.id}" method="post" modelAttribute="product">
+        <form:form action="${pageContext.request.contextPath}/products/updateProduct/${productId}" method="post" modelAttribute="product">
 
             <!-- Id (readonly) -->
             <div class="mb-3">
@@ -43,7 +44,8 @@
                 <input type="number"
                        name="id"
                        class="form-control"
-                       value="${product.id}"
+                       value="${productId}"
+                       path="product.id"
                        readonly
                        />
             </div>
@@ -58,6 +60,7 @@
                        value="${productDetails.name}"
                        path="productDetails.name"
                        />
+                       <form:errors path="productDetails.name" cssClass="error"/>
             </div>
 
             <!-- Expiration Date -->
@@ -69,6 +72,7 @@
                        placeholder="dd/mm/yyyy"
                        value="${productDetails.expirationDate}"
                        path="productDetails.expirationDate"/>
+                       <form:errors path="productDetails.expirationDate" cssClass="error"/>
             </div>
 
             <!-- Manufacturer -->
@@ -80,6 +84,7 @@
                        placeholder="Manufacturer"
                        value="${productDetails.manufacturer}"
                        path="productDetails.manufacturer"/>
+                       <form:errors path="productDetails.manufacturer" cssClass="error"/>
             </div>
 
             <!-- Price -->
@@ -91,6 +96,7 @@
                        placeholder="Price"
                        value="${productDetails.price}"
                        path="productDetails.price"/>
+                       <form:errors path="productDetails.price" cssClass="error"/>
             </div>
 
             <!-- Availability -->
@@ -104,6 +110,7 @@
                        max="1"
                        value="${productDetails.available}"
                        path="productDetails.available"/>
+                       <form:errors path="productDetails.available" cssClass="error"/>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

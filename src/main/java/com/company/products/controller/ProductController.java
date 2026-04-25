@@ -5,7 +5,10 @@ import com.company.products.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -38,8 +41,11 @@ public class ProductController {
     }
 
     @PostMapping("/products/addNewProduct")
-    public String addNewProduct(@ModelAttribute Product product) {
-        product.setName(product.getProductDetails().getName());
+    public String addNewProduct(@ModelAttribute @Valid Product product,
+                                BindingResult result) {
+        if (result.hasErrors()) {
+            return "products/new";
+        }
         productService.save(product);
         return "redirect:/products";
     }
@@ -55,20 +61,22 @@ public class ProductController {
     @GetMapping("/products/updateProduct/{id}")
     public String showUpdateProductForm(@PathVariable int id, Model model) {
         Product product = productService.findById(id);
-
         model.addAttribute("product", product);
+        model.addAttribute("productId", id);
         return "products/updateProduct";
     }
 
     @PostMapping("/products/updateProduct/{id}")
-    public String updateProduct(@PathVariable int id, @ModelAttribute(value = "product") Product formProduct) {
+    public String updateProduct(@PathVariable int id,
+                                @ModelAttribute(value = "product") @Valid Product formProduct,
+                                BindingResult result,
+                                Model model) {
 
-        Product product = productService.findById(id);
-
-        product.setName(formProduct.getProductDetails().getName());
-        product.setProductDetails(formProduct.getProductDetails());
-
-        productService.update(product);
+        if (result.hasErrors()) {
+            model.addAttribute("productId", id);
+            return "/products/updateProduct";
+        }
+        productService.update(formProduct);
         return "redirect:/products";
     }
 }
